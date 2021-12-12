@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Weather Widget</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, , maximum-scale=1" />
+    <meta name="description" content="Search for Weather Forcasts by Location and Get Activity Suggestions">
+    <link rel="icon" type="image/png" sizes="192X192" href="./img/favicon/weather-icon-android.png" />
+    <link rel="apple-touch-icon" type="image/png" sizes="180X180" href="./img/favicon/weather-icon-png-apple.png" />
+    <link rel="stylesheet" href="./css/styles.css" />
+</head>
+
+<body>
+    <div class="background">
+        <div class="backgroundImgLeft"></div>
+        <div class="backgroundImgRight"></div>
+    </div>
+    <div class="container">
+        <h1 id="title">Activity Forecast</h1>
+        <div id="forecastSearch">
+            <form>
+                <input id="searchInput" placeholder="Enter location (city)" type="text" required />
+                <button id="searchButton">Get Gorecast</button>
+            </form>
+            <h2 id="city"></h2>
+            <div class="inline">
+                <h3 id="temperature"></h3>
+                <img id="weatherIcon" class="hidden" />
+            </div>
+            <h3 id="tempRange"></h3>
+        </div>
+        <h1>Outdoor Activities</h1>
+        <ul>
+            <li id="solo">Solo</li>
+            <li id="team">Team</li>
+            <li id="all" class="chosen">All</li>
+        </ul>
+        <ul id="activitiesSolo"></ul>
+        <ul id="activitiesTeam" class="hidden"></ul>
+        <ul id="activitiesAll" class="hidden"></ul>
+        <script src="./js/app.js"></script>
+    </div>
+</body>
+
+</html>
