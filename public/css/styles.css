@@ -2,9 +2,6 @@
 
 html, body {
     margin: 0;
-    background-image: url(../img/damien-schnorhk-UZ97s1W_R20-unsplash.jpg), url(../img/sebastian-staines-5HcCXN5PVYk-unsplash.jpg);
-    background-repeat: no-repeat;
-    background-size: contain;
     font-family: 'Oxygen', 'Lato', sans-serif;
     color: rgb(33, 42, 71);
     text-align: center;
@@ -37,7 +34,7 @@ html, body {
 }
 
 :root {
-    --height: 650px;
+    --height: 670px;
     --width: 475px;
 }
 
@@ -49,7 +46,7 @@ html, body {
     left: calc(50vw - var(--width)/2);
     border: white 2px solid;
     border-radius: 25px;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.8);
 
 }
 
@@ -65,7 +62,7 @@ html, body {
 }
 
 #forecastSearch {
-    height: calc(var(--height)/2 - 90px);
+    height: calc(var(--height)/2 - 110px);
 }
 
 .container input, .container button {
@@ -96,9 +93,14 @@ html, body {
 
 h3, h2 {
     margin-top: 0;
+    margin-bottom: 10px;
 }
 
-.container ul {
+h2 {
+    margin-bottom: 5px;
+}
+
+.container .types {
     background-color: rgba(255, 255, 255, 0.7);
     list-style: none;
     margin: 0;
@@ -106,7 +108,7 @@ h3, h2 {
     font-size: 0px;
 }
 
-.container ul li {
+.container .types li {
     font-size: 25px;
     display: inline-block;
     padding: 10px 0;
@@ -115,8 +117,41 @@ h3, h2 {
     border: solid 0.2px rgb(247, 224, 197);
 }
 
-.container ul li:hover {
+.container .types li:hover {
     font-weight: bold;
+}
+
+#list {
+    text-align: left;
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+    -o-columns: 2;
+    list-style-type: none;
+    width: 70%;
+    margin: auto;
+    padding-top: 2%;
+    padding-left: 10%;
+
+}
+
+/* Add custom color bullet */
+#list li::before {
+    content: "\2022";
+    /* \2022 is the CSS Code/unicode for a bullet */
+    color: rgb(245, 209, 169);
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+    font-style: normal;
+}
+
+#list li {
+    padding: 7px;
+    font-weight: bolder;
+    font-style: italic;
+    color: rgb(63, 76, 126);
 }
 
 .inline {

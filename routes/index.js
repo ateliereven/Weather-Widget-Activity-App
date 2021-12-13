@@ -22,7 +22,7 @@ router.get('/', cache('2 minutes'), async (req, res) => {
         const apiRes = await needle('get', `${API_BASE_URL}?${params}`);
         const data = apiRes.body;
 
-        // log the request to the public API:
+        // log the request to the public API (in developement):
         if (process.env.NODE_ENV !== 'production') {
             console.log(`REQUEST: ${API_BASE_URL}?${params}`)
         }

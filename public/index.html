@@ -9,6 +9,7 @@
     <link rel="icon" type="image/png" sizes="192X192" href="./img/favicon/weather-icon-android.png" />
     <link rel="apple-touch-icon" type="image/png" sizes="180X180" href="./img/favicon/weather-icon-png-apple.png" />
     <link rel="stylesheet" href="./css/styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
 </head>
 
 <body>
@@ -31,16 +32,17 @@
             <h3 id="tempRange"></h3>
         </div>
         <h1>Outdoor Activities</h1>
-        <ul>
+        <ul class="types" id="types">
             <li id="solo">Solo</li>
             <li id="team">Team</li>
             <li id="all" class="chosen">All</li>
         </ul>
-        <ul id="activitiesSolo"></ul>
+        <ul id="list"></ul>
         <ul id="activitiesTeam" class="hidden"></ul>
         <ul id="activitiesAll" class="hidden"></ul>
-        <script src="./js/app.js"></script>
     </div>
+
+    <script src="./js/app.js"></script>
 </body>
 
 </html>
