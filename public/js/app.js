@@ -1,5 +1,6 @@
 "use strict";
 
+
 const searchInput = document.getElementById('searchInput');
 const forecastSearch = document.getElementById('forecastSearch');
 const city = document.getElementById('city');
@@ -30,14 +31,13 @@ const getForecast = (city) => {
     }).then(data => {
         //console.log(data);
         handleData(data);
+        // clearing the form input field:
+        searchInput.value = null;
     })
         .catch(error => {
             console.log(error);
             UIFailure();
         });
-
-    // clearing the form input field:
-    searchInput.value = null;
 };
 
 // event listener for form submission
@@ -82,13 +82,15 @@ const handleData = (data) => {
     // displaying a list of activities by temperature (all activities is the default):
     displayActivities(data.main.temp, data.weather[0].id, 'all');
 
+    // moving container according to temperature:
+    slideContainer(data.main.temp);
 
-    //displating activities by the selected type:
+    //displaying activities by the selected type:
     const onTypeSelect = (type) => {
         [...type.parentElement.children].forEach(sib => sib.classList.remove('chosen'));
         type.classList.add('chosen');
         displayActivities(data.main.temp, data.weather[0].id, type.id)
-    } 
+    }
 
     // event listener for displaying a list of solo activities by temperature:
     solo.addEventListener('click', () => {
@@ -102,7 +104,7 @@ const handleData = (data) => {
     all.addEventListener('click', () => {
         onTypeSelect(all)
     });
-}   
+}
 
 // lists of activities by temprature:
 class ActivityList {
@@ -112,11 +114,11 @@ class ActivityList {
         this.all = [].concat(this.solo, this.team);
     }
 }
-// temp above 25 degrees:
+// temp above 24 degrees:
 const summerActivitiesSolo = ['swimming', 'rowing', 'surfing', 'snorkeling', 'bicycling', 'walking', 'horseback riding'];
 let summerActivitiesTeam = ['beach volleyball', 'water polo', 'kayaking', 'golf'];
 const summerActivities = new ActivityList(summerActivitiesSolo, summerActivitiesTeam);
-// temp between 7-25 degrees:
+// temp between 7-24 degrees:
 const fairActivitiesSolo = ['hiking', 'rowing', 'bicycling', 'running', 'walking', 'horseback riding'];
 const fairActivitiesTeam = ['soccer', 'baseball', 'football', 'basketball', 'tennis', 'golf', 'rock-climbing'];
 const fairActivities = new ActivityList(fairActivitiesSolo, fairActivitiesTeam);
@@ -124,7 +126,6 @@ const fairActivities = new ActivityList(fairActivitiesSolo, fairActivitiesTeam);
 const winterActivitiesSolo = ['skiing', 'sledding', 'snowboarding', 'walking'];
 const winterActivitiesTeam = ['ice skating', 'hockey', 'ice climbing'];
 const winterActivities = new ActivityList(winterActivitiesSolo, winterActivitiesTeam);
-//console.log(winterActivities, fairActivities, summerActivities);
 
 // for displaying activity lists by temprature:
 const displayActivities = (temperature, conditionsId, type) => {
@@ -135,10 +136,10 @@ const displayActivities = (temperature, conditionsId, type) => {
         return;
     }
     // when weather conditions allow, display activities:
-    if (temperature > 25) {
+    if (temperature > 24) {
         mapActivitiesToList(summerActivities[type]);
     };
-     if (temperature >= 7 && temperature <= 25) {
+    if (temperature >= 7 && temperature <= 24) {
         mapActivitiesToList(fairActivities[type]);
     }; if (temperature < 7) {
         mapActivitiesToList(winterActivities[type]);
@@ -152,4 +153,19 @@ const mapActivitiesToList = (activitiesArray) => {
         listItems += `<li>${activity}</li>`;
     });
     document.getElementById('list').innerHTML = listItems;
+}
+
+//animation for container:
+const slideContainer = (temperature) => {
+    const container = $('.container')[0];
+    if (temperature > 24) {
+        // container should be on the right side of the page:
+        container.setAttribute("style", "transform:translateX(25vw);");
+    } else if (temperature < 8) {
+        // container should be on the left side of the page:
+        container.setAttribute("style", "transform:translateX(-25vw);");
+    } else {
+        // container should be centered (initial position):
+        container.setAttribute("style", "transform:translateX(0);");
+    }
 }
