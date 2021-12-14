@@ -9,18 +9,19 @@ html, body {
 
 .background {
     height: 100vh;
-    width: 100vw;
+    width: 100%;
     position: relative;
     display: flex;
-    flex-direction: row;
+    overflow: hidden;
 }
 
 .backgroundImgLeft, .backgroundImgRight {
     height: 100%;
-    width: 50%;
+width: inherit;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    transition: transform, 0.7s;
 }
 
 .backgroundImgLeft {
@@ -55,6 +56,7 @@ html, body {
     background-color: white;
     padding: 10px;
     margin: 0;
+    font-size: calc(1vw + 15px);
 }
 
 #title {
@@ -71,7 +73,7 @@ html, body {
     border: solid 1px rgb(33, 42, 71);
     border-radius: 12px;
     padding: 0 10px;
-    font-size: 18px;
+    font-size: calc(12.3px + 0.4vw);
     margin: 25px 2px;
 }
 
@@ -110,10 +112,10 @@ h2 {
 }
 
 .container .types li {
-    font-size: 25px;
+    font-size: calc(0.8vw + 13px);
     display: inline-block;
     padding: 10px 0;
-    width: 32.9%;
+    width: calc((100% - 6px)/3);
     cursor: pointer;
     border: solid 0.2px rgb(247, 224, 197);
 }
@@ -173,4 +175,52 @@ h2 {
 
 .red {
     color: red;
+}
+
+@media only screen and (max-width: 600px) {
+    :root {
+        --height: 94%;
+        --width: 90%;
+    }
+
+    .backgroundImgLeft {
+        background-image: url(../img/craig-bradford-J_xplkxx--8-unsplash-small.jpg);
+
+    }
+
+    .backgroundImgRight {
+        background-image: url(../img/sebastian-staines-5HcCXN5PVYk-unsplash-small.jpg);
+
+    }
+
+    #forecastSearch {
+        height: calc(var(--height)/2 - 60px);
+    }
+
+    h2 {
+        font-size: 16px;
+    }
+
+    h3 {
+        font-size: 15px;
+    }
+
+    #weatherIcon {
+        height: 50px;
+        width: 50px;
+
+    }
+
+    #list {
+        width: unset;
+    }
+
+    #list li {
+        font-size: 14px;
+    }
+
+    .container .types li {
+        padding: 5px 0;
+
+    }
 }

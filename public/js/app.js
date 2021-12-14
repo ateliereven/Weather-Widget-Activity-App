@@ -64,11 +64,11 @@ const clearData = () => {
 
 // search error handling:
 const UIFailure = () => {
-    const errMessage = document.createElement('h4');
+    const errMessage = document.createElement('div');
     errMessage.id = 'error';
     errMessage.className = 'red';
     forecastSearch.appendChild(errMessage);
-    errMessage.textContent = "Weather information unavailable / city not found. Please try again.";
+    errMessage.innerHTML = "<h4>Weather information unavailable / city not found.</h4> <h4>Please try again.</h4>";
 }
 
 // for displaying the search result data:
@@ -157,15 +157,38 @@ const mapActivitiesToList = (activitiesArray) => {
 
 //animation for container:
 const slideContainer = (temperature) => {
-    const container = $('.container')[0];
-    if (temperature > 24) {
-        // container should be on the right side of the page:
-        container.setAttribute("style", "transform:translateX(25vw);");
-    } else if (temperature < 8) {
-        // container should be on the left side of the page:
-        container.setAttribute("style", "transform:translateX(-25vw);");
+    const container = $('.container');
+    const bgImgLeft = $('.backgroundImgLeft');
+    const bgImgRight = $('.backgroundImgRight');
+    if (window.innerWidth >= 1100) {
+        if (temperature > 24) {
+            // container should be on the right side of the page:
+            container.attr("style", "transform:translateX(25vw);");
+        } else if (temperature < 8) {
+            // container should be on the left side of the page:
+            container.attr("style", "transform:translateX(-25vw);");
+        } else {
+            // container should be centered (initial position):
+            container.attr("style", "transform:translateX(0);");
+        }
     } else {
-        // container should be centered (initial position):
-        container.setAttribute("style", "transform:translateX(0);");
+        //make sure the container is centered:
+        container.attr("style", "left:calc(50vw - var(--width) / 2)");
+
+        if (temperature > 24) {
+            // background image should slide left:
+            bgImgRight.attr("style", "width:100%");
+            bgImgLeft.attr("style", "transform:translateX(-100vw);width:0%");
+        } else if (temperature < 8) {
+            // background image should slide right:
+            bgImgRight.attr("style", "width:0%");
+            bgImgLeft.attr("style", "width:100%");
+            container.attr("style", "border-color:rgb(247, 224, 197)");
+        }
+        else {
+            bgImgRight.attr("style", "width:100%");
+            bgImgLeft.attr("style", "width:100%");
+        }
     }
+  
 }
