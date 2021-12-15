@@ -1,13 +1,6 @@
 "use strict";
 
-
-const searchInput = document.getElementById('searchInput');
-const forecastSearch = document.getElementById('forecastSearch');
-const city = document.getElementById('city');
-const temperature = document.getElementById('temperature');
-const weatherIcon = document.getElementById('weatherIcon');
-const tempRange = document.getElementById('tempRange');
-
+const searchInput = $('#searchInput');
 const solo = document.getElementById('solo');
 const team = document.getElementById('team');
 const all = document.getElementById('all');
@@ -32,7 +25,7 @@ const getForecast = (city) => {
         //console.log(data);
         handleData(data);
         // clearing the form input field:
-        searchInput.value = null;
+        searchInput.val(null);
     })
         .catch(error => {
             console.log(error);
@@ -43,41 +36,34 @@ const getForecast = (city) => {
 // event listener for form submission
 document.getElementById('searchButton').addEventListener('click', e => {
     e.preventDefault();
-    if (searchInput.value === '') {
+    if (searchInput.val() === '') {
         alert('Please enter a city')
     } else {
-        getForecast(searchInput.value)
+        getForecast(searchInput.val())
     };
 });
 
 // clearing data from previous search:
 const clearData = () => {
-    if (forecastSearch.lastChild.id === 'error') {
-        forecastSearch.removeChild(forecastSearch.lastChild);
-    };
-    city.textContent = '';
-    temperature.textContent = '';
-    weatherIcon.src = '';
-    weatherIcon.classList.add('hidden');
-    tempRange.textContent = '';
+    $('#error').remove();
+    $('#warning').remove();
+    $('#city, #temperature, #tempRange').text('');
+    $('#weatherIcon').addClass('hidden').attr("src", "");
 }
 
 // search error handling:
 const UIFailure = () => {
-    const errMessage = document.createElement('div');
-    errMessage.id = 'error';
-    errMessage.className = 'red';
-    forecastSearch.appendChild(errMessage);
-    errMessage.innerHTML = "<h4>Weather information unavailable / city not found.</h4> <h4>Please try again.</h4>";
+    const errMessage = $('<div id="error" class="red"></div>');
+    errMessage.html("<h4 style='margin: 0px'>Weather information unavailable / city not found</h4> <h4 style='margin-top: 2px'>Please try again</h4>");
+    $('#forecastSearch').append(errMessage);
 }
 
 // for displaying the search result data:
 const handleData = (data) => {
-    city.textContent = data.name;
-    temperature.textContent = Math.round(data.main.temp).toString() + '℃  ,  ' + data.weather[0].description;
-    weatherIcon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
-    weatherIcon.classList.remove('hidden');
-    tempRange.textContent = `Low: ${Math.round(data.main.temp_min)}℃ | High: ${Math.round(data.main.temp_max)}℃`;
+    $('#city').text(data.name);
+    $('#temperature').text(Math.round(data.main.temp).toString() + '℃  ,  ' + data.weather[0].description);
+    $('#weatherIcon').removeClass('hidden').attr("src", `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`);
+    $('#tempRange').text(`Low: ${Math.round(data.main.temp_min)}℃ | High: ${Math.round(data.main.temp_max)}℃`);
 
     // displaying a list of activities by temperature (all activities is the default):
     displayActivities(data.main.temp, data.weather[0].id, 'all');
@@ -129,10 +115,12 @@ const winterActivities = new ActivityList(winterActivitiesSolo, winterActivities
 
 // for displaying activity lists by temprature:
 const displayActivities = (temperature, conditionsId, type) => {
+    //clear warning from previous clicks:
+    $('#warning').remove();
     // for poor weather conditions:
-    const conditionsIdArray = [212, 221, 232, 312, 313, 314, 321, 503, 504, 511, 521, 522, 531, 602, 616, 621, 622, 721, 762, 771, 781];
+    const conditionsIdArray = [212, 221, 232, 312, 313, 314, 321, 503, 504, 511, 521, 522, 531, 602, 616, 621, 622, 731, 762, 771, 781];
     if (conditionsIdArray.includes(conditionsId)) {
-        document.getElementById('list').innerHTML = "<h3 class='red'>Better stay indoors!</h3>";
+        $('.container').append("<h2 class='red' id='warning' style='padding-top:7%'>Better stay indoors!</h2>");
         return;
     }
     // when weather conditions allow, display activities:

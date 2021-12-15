@@ -17,7 +17,7 @@ html, body {
 
 .backgroundImgLeft, .backgroundImgRight {
     height: 100%;
-width: inherit;
+    width: inherit;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -56,7 +56,7 @@ width: inherit;
     background-color: white;
     padding: 10px;
     margin: 0;
-    font-size: calc(1vw + 15px);
+    font-size: calc(1vh + 15px);
 }
 
 #title {
@@ -112,7 +112,7 @@ h2 {
 }
 
 .container .types li {
-    font-size: calc(0.8vw + 13px);
+    font-size: calc(0.8vh + 13px);
     display: inline-block;
     padding: 10px 0;
     width: calc((100% - 6px)/3);
@@ -177,50 +177,51 @@ h2 {
     color: red;
 }
 
-@media only screen and (max-width: 600px) {
-    :root {
-        --height: 94%;
-        --width: 90%;
+    @media only screen and (max-width: 600px) {
+        :root {
+            --height: 94%;
+            --width: 90%;
+        }
+
+        .backgroundImgLeft {
+            background-image: url(../img/craig-bradford-J_xplkxx--8-unsplash-small.jpg);
+
+        }
+
+        .backgroundImgRight {
+            background-image: url(../img/sebastian-staines-5HcCXN5PVYk-unsplash-small.jpg);
+
+        }
+
+        #forecastSearch {
+            height: calc(var(--height)/2 - 60px);
+        }
+
+        h2 {
+            font-size: 16px;
+        }
+
+        h3 {
+            font-size: 15px;
+        }
+
+        #weatherIcon {
+            height: 50px;
+            width: 50px;
+
+        }
+
+        #list {
+            width: unset;
+        }
+
+        #list li {
+            font-size: 14px;
+            padding: 1vh;
+        }
+
+        .container .types li {
+            padding: 5px 0;
+
+        }
     }
-
-    .backgroundImgLeft {
-        background-image: url(../img/craig-bradford-J_xplkxx--8-unsplash-small.jpg);
-
-    }
-
-    .backgroundImgRight {
-        background-image: url(../img/sebastian-staines-5HcCXN5PVYk-unsplash-small.jpg);
-
-    }
-
-    #forecastSearch {
-        height: calc(var(--height)/2 - 60px);
-    }
-
-    h2 {
-        font-size: 16px;
-    }
-
-    h3 {
-        font-size: 15px;
-    }
-
-    #weatherIcon {
-        height: 50px;
-        width: 50px;
-
-    }
-
-    #list {
-        width: unset;
-    }
-
-    #list li {
-        font-size: 14px;
-    }
-
-    .container .types li {
-        padding: 5px 0;
-
-    }
-}

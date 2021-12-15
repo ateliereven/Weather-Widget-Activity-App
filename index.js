@@ -11,7 +11,7 @@ const app = express();
 //limit calls to api per user:
 const limiter = rateLimit({
     windowMs: 10 * 60 * 1000, //10 minutes
-    max: 15
+    max: 75
 })
 app.use(limiter);
 app.set('trust proxy', 1)
