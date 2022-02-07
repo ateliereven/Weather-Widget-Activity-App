@@ -54,7 +54,7 @@ const clearData = () => {
 // search error handling:
 const UIFailure = () => {
     const errMessage = $('<div id="error" class="red"></div>');
-    errMessage.html("<h4 style='margin: 0px'>Weather information unavailable / city not found</h4> <h4 style='margin-top: 2px'>Please try again</h4>");
+    errMessage.html("<h4>Weather information unavailable / city not found</h4> <h4 class='my-1'>Please try again</h4>");
     $('#forecastSearch').append(errMessage);
 }
 
@@ -120,7 +120,7 @@ const displayActivities = (temperature, conditionsId, type) => {
     // for poor weather conditions:
     const conditionsIdArray = [212, 221, 232, 312, 313, 314, 321, 503, 504, 511, 521, 522, 531, 602, 616, 621, 622, 731, 762, 771, 781];
     if (conditionsIdArray.includes(conditionsId)) {
-        $('.container').append("<h2 class='red' id='warning' style='padding-top:7%'>Better stay indoors!</h2>");
+        $('.container').append("<h2 class='red my-1' id='warning' style='padding-top:7%'>Better stay indoors!</h2>");
         return;
     }
     // when weather conditions allow, display activities:
@@ -138,7 +138,7 @@ const displayActivities = (temperature, conditionsId, type) => {
 const mapActivitiesToList = (activitiesArray) => {
     let listItems = "";
     activitiesArray.forEach(activity => {
-        listItems += `<li>${activity}</li>`;
+        listItems += `<li class="p-1">${activity}</li>`;
     });
     document.getElementById('list').innerHTML = listItems;
 }
@@ -161,7 +161,7 @@ const slideContainer = (temperature) => {
         }
     } else {
         //make sure the container is centered:
-        container.attr("style", "left:calc(50vw - var(--width) / 2)");
+        container.attr("style", "left: calc(50vw - var(--width) / 2)");
 
         if (temperature > 24) {
             // background image should slide left:
@@ -171,7 +171,7 @@ const slideContainer = (temperature) => {
             // background image should slide right:
             bgImgRight.attr("style", "width:0%");
             bgImgLeft.attr("style", "width:100%");
-            container.attr("style", "border-color:rgb(247, 224, 197)");
+            container.attr("style", "border-color:$secondary-color");
         }
         else {
             bgImgRight.attr("style", "width:100%");

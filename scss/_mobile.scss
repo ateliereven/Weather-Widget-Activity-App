@@ -1,0 +1,61 @@
+/*for mobile view*/
+@media only screen and (max-width: 600px) {
+    :root {
+        --height: 95vh;
+        --width: 90%;
+    }
+
+    .backgroundImgLeft {
+        background-image: url(../img/craig-bradford-J_xplkxx--8-unsplash-small.jpg);
+    }
+
+    .backgroundImgRight {
+        background-image: url(../img/sebastian-staines-5HcCXN5PVYk-unsplash-small.jpg);
+    }
+
+    #forecastSearch {
+        height: calc(var(--height)/2 - 60px);
+    }
+
+    h2 {
+        font-size: 16px;
+    }
+
+    h3 {
+        font-size: 15px;
+    }
+
+    #weatherIcon {
+        height: 50px;
+        width: 50px;
+    }
+
+    #list {
+        width: unset;
+        li {
+        font-size: 14px;
+        }
+    }
+
+    .container {
+            .types {
+                li {
+                    padding: 5px 0;
+                }
+            } 
+    }
+}
+
+/*for horizontal view*/
+@media only screen and (max-height: 450px) {
+    :root {
+        --height: 670px;
+    }
+
+    .background {
+        height: 720px;
+    }
+    .container {
+        top: 4%;
+    }
+}

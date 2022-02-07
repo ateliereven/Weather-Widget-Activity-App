@@ -1,0 +1,27 @@
+.inline {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.hidden {
+    display: none;
+}
+
+// set margin and padding classes:
+$spaceamounts: (1, 2, 3);
+
+@each $space in $spaceamounts {
+    .my-#{$space} {
+        margin: calc(#{$space}rem/2.5) 0;
+    }
+
+    .py-#{$space} {
+        padding: calc(#{$space}rem/2.5) 0;
+    }
+
+    .p-#{$space} {
+        padding: calc(#{$space}rem/2.5) ;
+    }
+}

@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Oxygen:wght@300;400;700&display=swap');
+@import 'config';
+
+:root {
+    --height: 670px;
+    --width: 475px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    font-family: $font-stack;
+    color: $primary-color;
+    text-align: center;
+}
+
+.background {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    display: flex;
+    overflow: hidden;
+}
+
+%backgroundImg {
+    height: 100%;
+    width: inherit;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    transition: transform, 0.7s;
+}
+
+.backgroundImgLeft {
+    @extend %backgroundImg;
+    background-image: url(../img/craig-bradford-J_xplkxx--8-unsplash.jpg);
+
+}
+
+.backgroundImgRight {
+    @extend %backgroundImg;
+    background-image: url(../img/sebastian-staines-5HcCXN5PVYk-unsplash.jpg);
+
+}
+
+.container {
+    position: absolute;
+    height: var(--height);
+    width: var(--width);
+    top: calc(50vh - var(--height)/2);
+    left: calc(50vw - var(--width)/2);
+    border: $bg-color 2px solid;
+    border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.8);
+    @include transition(transform, 1);
+
+    h1 {
+        background-color: $bg-color;
+        font-size: calc(1vh + 15px);
+    }
+
+    %search {
+    height: 30px;
+    border: solid 1px $primary-color;
+    border-radius: 12px;
+    padding: 0 10px;
+    font-size: calc(12.3px + 0.4vw);
+    margin: 20px 2px;
+    }
+
+    input {
+        @extend %search;
+    }
+
+    button {
+        @extend %search;
+        height: 32px;
+        background-color: $primary-color;
+        color: $bg-color;
+        cursor: pointer;
+
+        &:hover {
+            background-color: lighten($primary-color, 30%);
+        }
+    }
+
+    .types {
+        background-color: rgba(255, 255, 255, 0.7);
+        list-style: none;
+        font-size: 0px;
+
+        li {
+            font-size: calc(0.8vh + 13px);
+            display: inline-block;
+            padding: 10px 0;
+            width: calc(100%/3);
+            cursor: pointer;
+            border: solid 0.2px $secondary-color;
+
+            &:hover {
+                font-weight: bold;
+            }
+        }
+
+    }
+}
+
+#title {
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+}
+
+#forecastSearch {
+    height: calc(var(--height)/2 - 110px);
+}
+
+#weatherIcon {
+    height: 60px;
+    width: 60px;
+}
+
+#list {
+    @include columns(2);
+    text-align: left;
+    list-style-type: none;
+    width: 70%;
+    margin: auto;
+    padding-top: 2%;
+    padding-left: 10%;
+
+    li {
+        padding: 7px;
+        font-weight: bolder;
+        font-style: italic;
+        color: lighten($primary-color, 20%);
+
+        /* Add custom color bullet */
+        &::before {
+            content: "\2022";
+            /* \2022 is the CSS Code/unicode for a bullet */
+            color: darken($secondary-color, 10%);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+            font-style: normal;
+        }
+    }
+}
+
+.chosen {
+    background-color: $secondary-color;
+    font-weight: bold;
+}
+
+.red {
+    color: red;
+}
+
+@import 'utilities';
+@import 'mobile';
