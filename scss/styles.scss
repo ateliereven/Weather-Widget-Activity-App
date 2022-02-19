@@ -32,7 +32,7 @@ html, body {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    transition: transform, 0.7s;
+    @include transition(transform, 0.7);
 }
 
 .backgroundImgLeft {
